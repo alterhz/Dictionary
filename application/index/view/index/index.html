@@ -53,7 +53,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
 				<div class="panel panel-primary">
-					<div class="panel-heading">History</div>
+					<div class="panel-heading">History({$Think.session.session_user.history_count})</div>
 					<div class="panel-body">
 						<div class="list-group historyList" >
 							{volist name="historyList" id="vo" mod="2"}
@@ -78,7 +78,7 @@
 			</div>
 			<div class="col-xs-12 col-md-6">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Top</div>
+					<div class="panel-heading">Top({$Think.session.session_user.top_count})</div>
 					<div class="panel-body">
 						<div class="list-group historyList" >
 							{volist name="topList" id="vo" mod="2"}
