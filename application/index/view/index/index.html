@@ -28,30 +28,30 @@
 		<div class="jumbotron">
 		  <h1>Search word.</h1>
 		</div>
-	
-		<form id="search-form" class="form-inline">
-		  <input type="text" class="form-control input-lg" placeholder="" id="text" name="text">
 
-		  <div class="btn-group">
-			  <button id="search-btn" type="button" class="btn btn-primary btn-lg">{$dic.name}
-			  <input id="search_url" type="hidden" value="{$dic.url}"></input>
-			  </button>
-			  <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<span class="caret"></span>
-				<span class="sr-only">Toggle Dropdown</span>
-			  </button>
-			  <ul class="dropdown-menu">
-				  {volist name="dicList" id="vo" mod="2"}
-					<li><a href="changeDic/name/{$vo.name}">{$vo.name}</a></li>
-				  {/volist}
-			  </ul>
-			</div>
-		  <!-- Large button group -->
-			
-		</form>
-		<br />
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
+				<div class="container">
+					<form id="search-form" class="form-inline">
+					  <input type="text" class="form-control input-lg" placeholder="" id="text" name="text">
+
+					  <div class="btn-group">
+						  <button id="search-btn" type="button" class="btn btn-primary btn-lg">{$dic.name}
+						  <input id="search_url" type="hidden" value="{$dic.url}"></input>
+						  </button>
+						  <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						  </button>
+						  <ul class="dropdown-menu">
+							  {volist name="dicList" id="vo" mod="2"}
+								<li><a href="changeDic/name/{$vo.name}">{$vo.name}</a></li>
+							  {/volist}
+						  </ul>
+						</div>
+					</form>
+					<br />
+				</div>
 				<div class="panel panel-primary">
 					<div class="panel-heading">History({$Think.session.session_user.history_count})</div>
 					<div class="panel-body">
@@ -71,12 +71,16 @@
 						  <a href="changeHistoryCount/count/50" type="button" class="btn btn-primary">50</a>
 						</div>
 					</div>
-					
-					
-					
 				</div>
 			</div>
 			<div class="col-xs-12 col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">statistical data</div>
+					<div class="panel-body">
+						<p class="">Number of words: {$wordCount}</p>
+						<p class="">Number of searches: {$searchCount}</p>
+					</div>
+				</div>
 				<div class="panel panel-primary">
 					<div class="panel-heading">Top({$Think.session.session_user.top_count})</div>
 					<div class="panel-body">

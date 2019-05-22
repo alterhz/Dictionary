@@ -106,6 +106,7 @@ class Index extends \think\Controller
 	public function index() {
 		$this->checkSession();
 		
+		$userId = session("session_user")->id;
 		$maxHistoryCount = session("session_user")->history_count;
 		$maxTopCount = session("session_user")->top_count;
 		
@@ -122,22 +123,27 @@ class Index extends \think\Controller
 			$searchDic = 'LONGMAN';
 		}
 		
+		$wordCount = Search::where('user_id', $userId)->count();
+		$searchCount = Search::where('user_id', $userId)->sum('search_count');
+		
 		$dicList = Dic::all();
 		
 		$dic = Dic::get(['name' => $searchDic]);
 
-		$historyList = Search::where('user_id', session("session_user")->id)->order('update_time desc')->limit($maxHistoryCount)->select();
+		$historyList = Search::where('user_id', $userId)->order('update_time desc')->limit($maxHistoryCount)->select();
 
-		$topList = Search::where('user_id', session("session_user")->id)->order('search_count desc')->limit($maxTopCount)->select();
+		$topList = Search::where('user_id', $userId)->order('search_count desc')->limit($maxTopCount)->select();
 		
 		// assign list
+		$this->assign('wordCount', $wordCount);
+		$this->assign('searchCount', $searchCount);
+		
 		$this->assign('dicList', $dicList);
 		$this->assign('dic', $dic);
 		
 		$this->assign('historyList', $historyList);
 		$this->assign('topList', $topList);
 
-		
 		//$this->assign('maxHistoryCount', $maxHistoryCount);
 		
 		return $this->fetch();
