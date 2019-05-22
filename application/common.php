@@ -11,4 +11,4 @@
 
 // 应用公共文件
 // 绑定当前访问到index模块的index控制器
-define('BIND_MODULE','index/index');
+//define('BIND_MODULE','index/index');
