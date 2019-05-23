@@ -62,9 +62,9 @@
 						<div class="list-group historyList" >
 							{volist name="historyList" id="vo" mod="2"}
 								{eq name="mod" value="0"}
-									<li class="list-group-item list-group-item-success" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">delete</button></li>
+									<li class="list-group-item list-group-item-success" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
 								{else/}
-									<li class="list-group-item list-group-item-info" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">delete</button></li>
+									<li class="list-group-item list-group-item-info" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
 								{/eq}
 							{/volist}
 						</div>
@@ -95,9 +95,9 @@
 						<div class="list-group historyList" >
 							{volist name="topList" id="vo" mod="2"}
 								{eq name="mod" value="0"}
-									<li class="list-group-item list-group-item-success" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">delete</button></li>
+									<li class="list-group-item list-group-item-success" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
 								{else/}
-									<li class="list-group-item list-group-item-info" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">delete</button></li>
+									<li class="list-group-item list-group-item-info" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
 								{/eq}
 							{/volist}
 						</div>
