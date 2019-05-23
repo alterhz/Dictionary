@@ -182,11 +182,10 @@ class Index extends \think\Controller
 			$text = input('text');
 			if (strlen($text) > 0) {
 				$count = Search::where('user_id', $user_id)->where('text', $text)->delete();
-				return $count;
 			}
 		}
 		
-		return "ok";
+		return $this->redirect('index/index');
 	}
 	
 	public function changeDic() {
