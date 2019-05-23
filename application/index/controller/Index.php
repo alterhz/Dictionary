@@ -185,7 +185,7 @@ class Index extends \think\Controller
 			}
 		}
 		
-		return $this->redirect('index/index');
+		return "ok";
 	}
 	
 	public function changeDic() {

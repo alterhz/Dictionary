@@ -38,22 +38,21 @@ $(document).ready(function () {
 });
 
 function doSearch(t) {
-	$.post('search.html', {text: t});
-	
 	var searchUrl = $('#search_url').val();
 	console.info(searchUrl);
 	
 	var url = String.format(searchUrl, t);
-	
 	window.open(url, '_blank');
 	
-	window.location.reload()
+	$.post('search.html', {text: t}, function(data) {
+		window.location.reload();
+	});
 }
 
 function doDelete(t) {
-	$.post('delete.html', {text: t});
-
-	window.location.reload()
+	$.post('delete.html', {text: t}, function(data) {
+		window.location.reload();
+	});
 }
 
 String.format = function() {
