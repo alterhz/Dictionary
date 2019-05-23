@@ -21,41 +21,58 @@
   <body>
 	<br />
 	<div class="container">
-		<div>
-			<span class="pull-right">{$Think.session.session_user.name}<a href="logout.html" class="btn">Sign Out</a><span>
+		<div class="page-header">
+
+		  <h1 class="">Search for words <small>Dictionary</small></h1>
+		  
 		</div>
 		
-		<div class="page-header">
-		  <h1 class="">Search for words <small>Dictionary</small></h1>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#" class="disabled" role="button">{$Think.session.session_user.name}</a></li>
+					<li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					  </ul>
+					</li>
+					<li><a href="logout.html" class="btn">Sign Out</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="" style="margin:5px; margin-bottom:20px">
+			<div class="input-group">
+			  <input type="text" class="form-control input-lg" placeholder="word" id="text" name="text">
+			  <div class="input-group-btn">
+				<!-- Button and dropdown menu -->
+				  <button id="search-btn" type="button" class="btn btn-primary btn-lg">{$dic.name}
+					<input id="search_url" type="hidden" value="{$dic.url}"></input>
+				  </button>
+				  <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown</span>
+				  </button>
+				  <ul class="dropdown-menu">
+					  {volist name="dicList" id="vo" mod="2"}
+						<li><a href="changeDic/name/{$vo.name}">{$vo.name}</a></li>
+					  {/volist}
+				  </ul>
+			  </div>
+			</div>
 		</div>
 
+		<div class="alert alert-info" role="alert">
+			<p class="">Number of words: <b>{$wordCount}</b>.Number of searches: {$searchCount}</p>
+		</div>
+		
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
-				<div class="" style="">
-					<div class="input-group">
-					  <input type="text" class="form-control input-lg" placeholder="word" id="text" name="text">
-					  <div class="input-group-btn">
-						<!-- Button and dropdown menu -->
-						  <button id="search-btn" type="button" class="btn btn-primary btn-lg">{$dic.name}
-							<input id="search_url" type="hidden" value="{$dic.url}"></input>
-						  </button>
-						  <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="caret"></span>
-							<span class="sr-only">Toggle Dropdown</span>
-						  </button>
-						  <ul class="dropdown-menu">
-							  {volist name="dicList" id="vo" mod="2"}
-								<li><a href="changeDic/name/{$vo.name}">{$vo.name}</a></li>
-							  {/volist}
-						  </ul>
-					  </div>
-					</div>
-				</div>
-				<br/>
-				<div class="alert alert-info" role="alert">
-					<p class="">Number of words: <b>{$wordCount}</b>.Number of searches: {$searchCount}</p>
-				</div>
-				
 				<div class="panel panel-primary">
 					<div class="panel-heading">History({$Think.session.session_user.history_count})</div>
 					<div class="panel-body">
