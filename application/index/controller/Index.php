@@ -7,8 +7,6 @@ use app\index\model\Dic;
 
 class Index extends \think\Controller
 {
-	
-	
 	public function register() {
 		if (input('?name') && input('?password')) 
 		{
@@ -157,6 +155,7 @@ class Index extends \think\Controller
 			$user_id = session("session_user")->id;
 			$text = input('text');
 			$text = trim($text);
+			$text = strtolower($text);
 			if (strlen($text) > 0) {
 				$search = Search::where('user_id', $user_id)->where('text', $text)->find();
 				if (null == $search) {
