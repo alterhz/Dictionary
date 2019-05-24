@@ -156,6 +156,7 @@ class Index extends \think\Controller
 		if (input('?text')) {
 			$user_id = session("session_user")->id;
 			$text = input('text');
+			$text = trim($text);
 			if (strlen($text) > 0) {
 				$search = Search::where('user_id', $user_id)->where('text', $text)->find();
 				if (null == $search) {

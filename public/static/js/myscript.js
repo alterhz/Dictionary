@@ -10,7 +10,7 @@ $(document).ready(function () {
   	});
 
 	$('#search-btn').click(function(event) {
-		var t = $('#text').val();
+		var t = $('#text').val().trim();
 		if (t.length > 0) {
 			doSearch(t);
 		} else {
