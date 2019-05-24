@@ -10,7 +10,7 @@ $(document).ready(function () {
   	});
 
 	$('#search-btn').click(function(event) {
-		var t = $('#text').val().trim();
+		var t = $('#text').val().trim().toLowerCase();
 		if (t.length > 0) {
 			doSearch(t);
 		} else {
@@ -37,20 +37,32 @@ $(document).ready(function () {
 
 });
 
+function pURL(url) {
+	var publicUrl = $('#publicUrl').val();
+	return publicUrl + url;
+}
+
 function doSearch(t) {
 	var searchUrl = $('#search_url').val();
-	console.info(searchUrl);
+	console.info('searchUrl:' + searchUrl);
 	
 	var url = String.format(searchUrl, t);
 	window.open(url, '_blank');
 	
-	$.post('search.html', {text: t}, function(data) {
+	var sUrl = pURL('/index/search.html');
+	console.info('doSearch:' + sUrl);
+	
+	$.post(sUrl, {text: t}, function(data) {
 		window.location.reload();
 	});
 }
 
 function doDelete(t) {
-	$.post('delete.html', {text: t}, function(data) {
+	var url = pURL('/index/delete.html');
+	
+	console.info('doDelete:' + url);
+	
+	$.post(url, {text: t}, function(data) {
 		window.location.reload();
 	});
 }
