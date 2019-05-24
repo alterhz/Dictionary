@@ -1,1 +1,13 @@
 
+.familar {
+	color: green;
+	cursor: default;
+	font-size: 120%;
+}
+
+.strange {
+	color: red;
+	cursor: default;
+	font-weight: bold;
+	font-size: 120%;
+}

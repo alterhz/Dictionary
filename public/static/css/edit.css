@@ -1,0 +1,14 @@
+
+#contentShow p {
+	font-size: 120%;
+}
+
+#contentShow span {
+	cursor: pointer;
+}
+
+.strange {
+	color: red;
+	cursor: pointer;
+	font-weight: bold;
+}

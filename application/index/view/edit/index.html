@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-	{css href="__PUBLIC__/static/css/mycss.css" /}
+	{css href="__PUBLIC__/static/css/edit.css" /}
 
 	<link href="__PUBLIC__/fav.ico" rel="shortcut icon">
 	
@@ -28,12 +28,12 @@
 			<div class="pull-right">
 				<p class="">{$Think.session.session_user.name}<a href="__PUBLIC__/index/logout.html" class="btn">Sign Out</a><p>
 			</div>
-			<h1 class="">Search for words <small>Dictionary</small></h1>
+			<h1 class="">Edit for words <small>Dictionary</small></h1>
 		</div>
 		
 		<div class="" style="margin-bottom:20px">
+			<div class="form-group">
 			<div class="input-group">
-			  <input type="text" class="form-control input-lg" placeholder="word" id="text" name="text">
 			  <div class="input-group-btn">
 				<!-- Button and dropdown menu -->
 				  <button id="search-btn" type="button" class="btn btn-primary btn-lg">{$dic.name}
@@ -50,69 +50,48 @@
 				  </ul>
 			  </div>
 			</div>
-		</div>
-
-		<div class="alert alert-info" role="alert">
-			<p class="lead">Number of words: <strong>{$wordCount}</strong>. Number of searches: <strong>{$searchCount}</strong></p>
+		  </div>
 		</div>
 		
-		<div class="row">
-			<div class="col-xs-12 col-md-6">
-				<div class="panel panel-primary">
-					<div class="panel-heading">History({$Think.session.session_user.history_count})</div>
-					<div class="panel-body">
-						<div class="list-group historyList" >
-							{volist name="historyList" id="vo" mod="2"}
-								{eq name="mod" value="0"}
-									<li class="list-group-item list-group-item-success" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
-								{else/}
-									<li class="list-group-item list-group-item-info" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
-								{/eq}
-							{/volist}
-						</div>
-						
-						<div class="form-inline">
-							<div class="btn-group pull-right" role="group" aria-label="count">
-							  <a href="__PUBLIC__/index/changeHistoryCount/count/5" type="button" class="btn btn-primary">5</a>
-							  <a href="__PUBLIC__/index/changeHistoryCount/count/10" type="button" class="btn btn-primary">10</a>
-							  <a href="__PUBLIC__/index/changeHistoryCount/count/20" type="button" class="btn btn-primary">20</a>
-							  <a href="__PUBLIC__/index/changeHistoryCount/count/50" type="button" class="btn btn-primary">50</a>
-							</div>
-							<!-- <div class="input-group"> -->
-								<!-- <span class="input-group-btn"> -->
-								<!-- <button class="btn btn-primary" type="button">Set</button> -->
-								<!-- </span> -->
-								<!-- <input type="text" class="form-control" width="5" placeholder="count"> -->
-								
-							<!-- </div> -->
-						</div>
-						
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6">
-				<div class="panel panel-primary">
-					<div class="panel-heading">Top({$Think.session.session_user.top_count})</div>
-					<div class="panel-body">
-						<div class="list-group historyList" >
-							{volist name="topList" id="vo" mod="2"}
-								{eq name="mod" value="0"}
-									<li class="list-group-item list-group-item-success" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
-								{else/}
-									<li class="list-group-item list-group-item-info" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
-								{/eq}
-							{/volist}
-						</div>
-						<div class="btn-group pull-right" role="group" aria-label="count">
-						  <a href="__PUBLIC__/index/changeTopCount/count/5" type="button" class="btn btn-primary">5</a>
-						  <a href="__PUBLIC__/index/changeTopCount/count/10" type="button" class="btn btn-primary">10</a>
-						  <a href="__PUBLIC__/index/changeTopCount/count/20" type="button" class="btn btn-primary">20</a>
-						  <a href="__PUBLIC__/index/changeTopCount/count/50" type="button" class="btn btn-primary">50</a>
-						</div>
-					</div>
-				</div>
-			</div>
+		<form>
+		  <div class="form-group">
+			<label for="content" class="col-sm-2 control-label">Content</label>
+			<textarea id="content" class="form-control" rows="10">
+			Huawei has found itself at the center of a global tussle between the US and China after Trump's administration placed the brand on the ‘entity list’, limiting the business US brands could do with it.
+
+That led to Google blocking Huawei’s future access to Android updates, UK-based chip designer ARM has ceased all activities with the brand and multiple retailers and networks around the world to stop dealing with it for fear of sanctions from the US government.
+			</textarea>
+		  </div>
+
+		  <div class="form-group">
+			<button id="confirm" type="button" class="btn btn-success btn-lg">Confirm</button>
+		  </div>
+		</form>
+		
+		
+		
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+			<h3 class="panel-title">Result</h3>
+		  </div>
+		  <div id="contentShow" class="panel-body">
+			<p>
+				<span class="">After</span> <span class="">Hitler</span> <span class="strange">and</span> <span>the</span> <span>NSDAP</span> <span>came</span> <span>to</span> <span>power</span> <span>on</span> 30 <span>January</span> 1933
+			</p>
+		  </div>
 		</div>
+		
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+			<h3 class="panel-title">mark</h3>
+		  </div>
+		  <div id="contentShow2" class="panel-body">
+			<p>
+				<span class="btn btn-danger">After</span> <span class="familar">Hitler</span> <span class="familar">and</span> <span>the<span> <span>NSDAP<span> <span>came</span> <span>to</span> <span>power</span> <span>on</span> 30 <span>January</span> 1933
+			</p>
+		  </div>
+		</div>
+		
 		
 	</div>
 	
@@ -124,7 +103,7 @@
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 	<!-- my script.js -->
-	{js href="__PUBLIC__/static/js/myscript.js" /}
+	{js href="__PUBLIC__/static/js/edit.js" /}
 
   </body>
 </html>

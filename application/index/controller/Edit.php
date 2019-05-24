@@ -8,6 +8,18 @@ use app\index\model\Dic;
 class Edit extends \think\Controller
 {
 	public function index() {
+		
+		$searchDic = session("session_user")->search_dic;
+		if (strlen($searchDic) == 0) {
+			$searchDic = 'LONGMAN';
+		}
+		
+		$dicList = Dic::all();
+		$this->assign('dicList', $dicList);
+		
+		$dic = Dic::get(['name' => $searchDic]);
+		$this->assign('dic', $dic);
+		
 		return $this->fetch();
 	}
     public function test3()
