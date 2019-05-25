@@ -5,10 +5,12 @@
 
 #contentShow span {
 	cursor: pointer;
+	text-decoration: underline;
 }
 
 .strange {
 	color: red;
 	cursor: pointer;
 	font-weight: bold;
+	text-decoration: underline;
 }

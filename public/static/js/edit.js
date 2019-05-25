@@ -11,28 +11,60 @@ $(document).ready(function () {
 		
 		$('#contentShow').empty();
 		$('#contentShow2').empty();
+		$('#contentShow').append('<p></p>');
+		
+		var objP = $('#contentShow p');
 		
 		arrWord = content.split(' ');
 		for (var i=0; i<arrWord.length; ++i) {
 			if (i % 7 == 0) {
-				$('#contentShow').append('<span class="strange">' + arrWord[i] + '</span>');
+				objP.append('<span class="strange">' + arrWord[i] + '</span>');
 				
 				$('#contentShow2').append('<span class="btn ">' + arrWord[i] + '</span>');
 			} else {
-				$('#contentShow').append('<span class="">' + arrWord[i] + '</span>');
+				objP.append('<span class="">' + arrWord[i] + '</span>');
 				
 				$('#contentShow2').append('<span class="btn btn-danger">' + arrWord[i] + '</span>');
 			}
-			
-			$('#contentShow').append(' ');
+
+			objP.append(' ');
 			$('#contentShow2').append(' ');
 		}
+		
+		$('#contentShow p').on('click', "span", function() {
+			console.log($(this).html());
+			
+			if ($('#mark').hasClass('active')) {
+				// only can edit after it has been actived.
+				
+				var thisObj = $(this);
+			
+				if (thisObj.hasClass('strange')) {
+					$(this).removeClass('strange');
+				} else {
+					$(this).addClass('strange');
+				}
+				
+			}
+			
+			
+		});
+		
+		
 	});
 	
 	$('#contentShow span').click(function() {
+		console.log($(this).html());
+		
 		$(this).toggleClass('strange');
 		
 	});
+	
+	$('#mark').click(function() {
+		console.log($('#mark').hasClass('active'));
+	});
+	
+	
 
 });
 

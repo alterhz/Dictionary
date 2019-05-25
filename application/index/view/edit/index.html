@@ -32,25 +32,7 @@
 		</div>
 		
 		<div class="" style="margin-bottom:20px">
-			<div class="form-group">
-			<div class="input-group">
-			  <div class="input-group-btn">
-				<!-- Button and dropdown menu -->
-				  <button id="search-btn" type="button" class="btn btn-primary btn-lg">{$dic.name}
-					<input id="search_url" type="hidden" value="{$dic.url}"></input>
-				  </button>
-				  <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="caret"></span>
-					<span class="sr-only">Toggle Dropdown </span>
-				  </button>
-				  <ul class="dropdown-menu">
-					  {volist name="dicList" id="vo" mod="2"}
-						<li><a href="changeDic/name/{$vo.name}">{$vo.name}</a></li>
-					  {/volist}
-				  </ul>
-			  </div>
-			</div>
-		  </div>
+			
 		</div>
 		
 		<form>
@@ -74,7 +56,32 @@ That led to Google blocking Huawei’s future access to Android updates, UK-base
 		  <div class="panel-heading">
 			<h3 class="panel-title">Result</h3>
 		  </div>
+		  
+		  <div class="">
+			<div class="input-group">
+			  <div class="input-group-btn">
+				<!-- Button and dropdown menu -->
+				  <button id="search-btn" type="button" class="btn btn-primary btn-lg">{$dic.name}
+					<input id="search_url" type="hidden" value="{$dic.url}"></input>
+				  </button>
+				  <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown </span>
+				  </button>
+				  <ul class="dropdown-menu">
+					  {volist name="dicList" id="vo" mod="2"}
+						<li><a href="changeDic/name/{$vo.name}">{$vo.name}</a></li>
+					  {/volist}
+				  </ul>
+				  <button type="button" id="mark" class="btn btn-primary btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off">Quick Mark</button>
+			  </div>
+			</div>
+		  </div>
+		  
 		  <div id="contentShow" class="panel-body">
+			 
+			
+			
 			<p>
 				<span class="">After</span> <span class="">Hitler</span> <span class="strange">and</span> <span>the</span> <span>NSDAP</span> <span>came</span> <span>to</span> <span>power</span> <span>on</span> 30 <span>January</span> 1933
 			</p>
