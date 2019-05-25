@@ -21,6 +21,8 @@
     <![endif]-->
   </head>
   <body>
+	<input id="publicUrl" type="hidden" value="__PUBLIC__"></input>
+	
 	<br />
 	<div class="container">
 		
@@ -102,6 +104,11 @@ That led to Google blocking Huawei’s future access to Android updates, UK-base
 		
 	</div>
 	
+	<div id="word_list" class="">
+		{volist name="wordList" id="vo"}
+			<span>{$vo.text}</span>
+		{/volist}
+	</div>
 
 	
 

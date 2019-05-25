@@ -41,7 +41,9 @@ class Edit extends \think\Controller
 		$dic = Dic::get(['name' => $searchDic]);
 		$this->assign('dic', $dic);
 		
-		
+		$userId = session("session_user")->id;
+		$wordList = Word::where('user_id', $userId)->where('familar', 1)->order('text')->select();
+		$this->assign('wordList', $wordList);
 		
 		return $this->fetch();
 	}
