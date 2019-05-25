@@ -23,8 +23,7 @@ $(document).ready(function () {
 });
 
 function dealWords() {
-	var content = $('#content').val();
-	var arrWord = new Array();
+	
 	
 	var strResult = '';
 	
@@ -32,8 +31,10 @@ function dealWords() {
 	$('#contentShow2').empty();
 	$('#contentShow').append('<p></p>');
 	
+	var content = $('#content').val();
 	var objP = $('#contentShow p');
 
+	var arrWord = new Array();
 	arrWord = content.split(' ');
 	for (var i=0; i<arrWord.length; ++i) {
 		//console.log(i + ':' + arrWord[i]);
@@ -92,7 +93,15 @@ function dealWords() {
 					});
 				}
 				
-				dealWords();
+				$('#contentShow span').each(function() {
+					if ($(this).text().toLowerCase() == strText.toLowerCase()) {
+						if (familar == 1) {
+							$(this).removeClass('strange');
+						} else {
+							$(this).addClass('strange');
+						}
+					}
+				});
 			});
 		
 			// if (thisObj.hasClass('strange')) {

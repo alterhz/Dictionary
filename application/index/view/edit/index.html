@@ -40,11 +40,7 @@
 		<form>
 		  <div class="form-group">
 			<label for="content" class="col-sm-2 control-label">Content</label>
-			<textarea id="content" class="form-control" rows="10">
-			Huawei has found itself at the center of a global tussle between the US and China after Trump's administration placed the brand on the ‘entity list’, limiting the business US brands could do with it.
-
-That led to Google blocking Huawei’s future access to Android updates, UK-based chip designer ARM has ceased all activities with the brand and multiple retailers and networks around the world to stop dealing with it for fear of sanctions from the US government.
-			</textarea>
+			<textarea id="content" class="form-control" rows="10">The Milwaukee Bucks are an American professional basketball team based in Milwaukee, Wisconsin. The Bucks compete in the National Basketball Association as a member of the league's Eastern Conference Central Division. The team was founded in 1968 as an expansion team, and play at the Fiserv Forum. Wikipedia</textarea>
 		  </div>
 
 		  <div class="form-group">
@@ -76,21 +72,20 @@ That led to Google blocking Huawei’s future access to Android updates, UK-base
 					  {/volist}
 				  </ul>
 				  <button type="button" id="mark" class="btn btn-primary btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off">Quick Mark</button>
+				  
+				  <button type="button" id="mark" class="btn btn-primary btn-lg">Show familar words</button>
 			  </div>
 			</div>
 		  </div>
 		  
 		  <div id="contentShow" class="panel-body">
-			 
-			
-			
 			<p>
 				<span class="">After</span> <span class="">Hitler</span> <span class="strange">and</span> <span>the</span> <span>NSDAP</span> <span>came</span> <span>to</span> <span>power</span> <span>on</span> 30 <span>January</span> 1933
 			</p>
 		  </div>
 		</div>
 		
-		<div class="panel panel-primary">
+		<div class="panel panel-primary hidden">
 		  <div class="panel-heading">
 			<h3 class="panel-title">mark</h3>
 		  </div>
@@ -104,7 +99,7 @@ That led to Google blocking Huawei’s future access to Android updates, UK-base
 		
 	</div>
 	
-	<div id="word_list" class="">
+	<div id="word_list" class="hidden">
 		{volist name="wordList" id="vo"}
 			<span>{$vo.text}</span>
 		{/volist}
