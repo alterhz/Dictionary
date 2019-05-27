@@ -84,6 +84,19 @@ class Edit extends \think\Controller
 		return "OK";
 	}
 	
-	
+	public function changeDic() {
+		$this->checkSession();
+		
+		if (input('?name')) {
+			$name = input('name');
+			if (strlen($name) > 0) {
+				$session_user = session("session_user");
+				$session_user->search_dic = $name;
+				$session_user->allowField(['search_dic', 'update_time'])->save();
+			}
+		}
+		
+		return "OK";
+	}
 	
 }

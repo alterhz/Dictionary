@@ -33,10 +33,6 @@
 			<h1 class="">Recognize new words <small>Dictionary</small></h1>
 		</div>
 		
-		<div class="" style="margin-bottom:20px">
-			
-		</div>
-		
 		<form>
 		  <div class="form-group">
 			<label for="content" class="col-sm-2 control-label">Content</label>
@@ -44,68 +40,78 @@
 		  </div>
 
 		  <div class="form-group">
-			<button id="confirm" type="button" class="btn btn-success btn-lg">Confirm</button>
+			<button id="confirm" type="button" class="btn btn-primary btn-lg">Process</button>
+			<button id="clear" type="button" class="btn btn-primary btn-lg">Clear</button>
+			<button type="button" id="mark" class="btn btn-primary btn-lg">Quick edit</button>
+			<button type="button" id="btn_familar" class="btn btn-primary btn-lg">Show familar words</button>
 		  </div>
 		</form>
-		
-		
-		
+
 		<div class="panel panel-primary">
 		  <div class="panel-heading">
-			<h3 class="panel-title">Result</h3>
-		  </div>
-		  
-		  <div class="">
-			<div class="input-group">
-			  <div class="input-group-btn">
-				<!-- Button and dropdown menu -->
-				  <button id="search-btn" type="button" class="btn btn-primary btn-lg">{$dic.name}
-					<input id="search_url" type="hidden" value="{$dic.url}"></input>
-				  </button>
-				  <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="caret"></span>
-					<span class="sr-only">Toggle Dropdown </span>
-				  </button>
-				  <ul class="dropdown-menu">
-					  {volist name="dicList" id="vo" mod="2"}
-						<li><a href="changeDic/name/{$vo.name}">{$vo.name}</a></li>
-					  {/volist}
-				  </ul>
-				  <button type="button" id="mark" class="btn btn-primary btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off">Quick Mark</button>
-				  
-				  <button type="button" id="mark" class="btn btn-primary btn-lg">Show familar words</button>
-			  </div>
+			<!-- <h3 class="panel-title">Result</h3> -->
+			<span >Dictionary</span>
+			<div class="btn-group">
+			  <button id="selected_dic" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<span class="text">{$dic.name}</span>
+				<span class="caret"></span>
+			  </button>
+			  <ul id="dic_list" class="dropdown-menu">
+				{volist name="dicList" id="vo"}
+					<li><a href="#" url="{$vo.url}">{$vo.name}</a></li>
+				{/volist}
+			  </ul>
 			</div>
 		  </div>
-		  
-		  <div id="contentShow" class="panel-body">
-			<p>
-				<span class="">After</span> <span class="">Hitler</span> <span class="strange">and</span> <span>the</span> <span>NSDAP</span> <span>came</span> <span>to</span> <span>power</span> <span>on</span> 30 <span>January</span> 1933
-			</p>
-		  </div>
-		</div>
-		
-		<div class="panel panel-primary hidden">
-		  <div class="panel-heading">
-			<h3 class="panel-title">mark</h3>
-		  </div>
-		  <div id="contentShow2" class="panel-body">
-			<p>
-				<span class="btn btn-danger">After</span> <span class="familar">Hitler</span> <span class="familar">and</span> <span>the<span> <span>NSDAP<span> <span>came</span> <span>to</span> <span>power</span> <span>on</span> 30 <span>January</span> 1933
-			</p>
-		  </div>
-		</div>
-		
-		
-	</div>
-	
-	<div id="word_list" class="hidden">
-		{volist name="wordList" id="vo"}
-			<span>{$vo.text}</span>
-		{/volist}
-	</div>
 
+		  <div id="contentShow" class="panel-body">
+			<!-- <p> -->
+				<!-- <span class="">After</span> <span class="">Hitler</span> <span class="strange">and</span> <span>the</span> <span>NSDAP</span> <span>came</span> <span>to</span> <span>power</span> <span>on</span> 30 <span>January</span> 1933 -->
+			<!-- </p> -->
+		  </div>
+		</div>
+
+	</div>
 	
+	<!-- edit words modal -->
+	<div id="modal_edit" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	  <div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Quick mark words</h4>
+		  </div>
+		  <div id="edit_words" class="modal-body">
+			<!-- <p> -->
+				<!-- <span class="">After</span> <span class="">Hitler</span> <span class="strange">and</span> <span>the</span> <span>NSDAP</span> <span>came</span> <span>to</span> <span>power</span> <span>on</span> 30 <span>January</span> 1933 -->
+			<!-- </p> -->
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<!-- familar words modal -->
+	<div id="modal_familar" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	  <div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Familar words</h4>
+		  </div>
+		  <div id="word_list" class="modal-body">
+			{volist name="wordList" id="vo"}
+				<span>{$vo.text}</span>
+			{/volist}
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
 
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>

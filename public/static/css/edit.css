@@ -8,6 +8,15 @@
 	text-decoration: underline;
 }
 
+#edit_words p {
+	font-size: 120%;
+}
+
+#edit_words span {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
 .strange {
 	color: red;
 	cursor: pointer;
