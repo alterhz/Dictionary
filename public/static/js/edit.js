@@ -43,6 +43,13 @@ $(document).ready(function () {
 	});
 });
 
+function splitWords(paragraph) {
+	console.log('paragraph.length:' + paragraph.length);
+	
+	console.log(paragraph[0] + paragraph[1]);
+	
+}
+
 function dealWords() {
 	$('#edit_words').empty();
 	$('#edit_words').append('<p></p>');
@@ -53,6 +60,8 @@ function dealWords() {
 	
 	var content = $('#content').val();
 	arrWord = content.split(' ');
+	
+	splitWords(content);
 	
 	var mapWords = getFamilarWords();
 	
