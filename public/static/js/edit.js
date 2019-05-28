@@ -43,11 +43,65 @@ $(document).ready(function () {
 	});
 });
 
+//beginning of actual function
+String.prototype.isABC = function(){
+	var a =this,ab="abcdefghijklmnopqrstuvwxyz",ab2=ab.toUpperCase();
+	for(var i=0;i<ab.length;i++){
+		if(ab.charAt(i)==a||ab2.charAt(i)==a){
+			return true; 
+		}
+	}
+	
+	return false;
+}
+
+String.prototype.isABC2 = function(){
+	var a =this;
+	var ab="abcdefghijklmnopqrstuvwxyz", ab2=ab.toUpperCase();
+	var ex = "'";
+	ab = ab.concat(ab2, ex);
+	
+	//console.log(ab);
+	
+	for(var i=0;i<ab.length;i++){
+		if(ab.charAt(i)==a){
+			return true; 
+		}
+	}
+	
+	return false;
+}
+//end of function
+
 function splitWords(paragraph) {
 	console.log('paragraph.length:' + paragraph.length);
+	console.log(paragraph[0].isABC2());
+	console.log(paragraph[4].isABC2());
 	
-	console.log(paragraph[0] + paragraph[1]);
+	var wordList = new Array();
 	
+	var word = '';
+	var other = '';
+	for (var i = 0; i<paragraph.length; ++i) {
+		var c = paragraph[i];
+		if (c.isABC2()) {
+			word = word.concat(c);
+			
+			if (other.length > 0) {
+				wordList.push({o: other});
+				other = '';
+			}
+		} else {
+			other = other.concat(c);
+			
+			if (word.length > 0) {
+				wordList.push({w: word});
+				word = '';
+			}
+		}
+	}
+	
+	return wordList;
 }
 
 function dealWords() {
@@ -61,26 +115,32 @@ function dealWords() {
 	var content = $('#content').val();
 	arrWord = content.split(' ');
 	
-	splitWords(content);
+	var wordList = splitWords(content);
+	console.log(wordList);
 	
 	var mapWords = getFamilarWords();
 	
-	for (var i=0; i<arrWord.length; ++i) {
-		//console.log(i + ':' + arrWord[i]);
-		var has = false;
-		if (mapWords[arrWord[i].toLowerCase()]) {
-			has = true;
-		} else {
-			has = false;
-		}
+	for (var i=0; i<wordList.length; ++i) {
+		if (wordList[i].w !== undefined) {
+			var word = wordList[i].w;
+			
+			var has = false;
+			if (mapWords[word.toLowerCase()]) {
+				has = true;
+			} else {
+				has = false;
+			}
 
-		if (!has) {
-			objP.append('<span class="strange">' + arrWord[i] + '</span>');
+			if (has) {
+				objP.append('<span class="familar">' + word + '</span>');
+			} else {
+				objP.append('<span class="strange">' + word + '</span>');
+			}
 		} else {
-			objP.append('<span class="">' + arrWord[i] + '</span>');
+			var other = wordList[i].o;
+			
+			objP.append(other);
 		}
-
-		objP.append(' ');
 	}
 
 	$('#edit_words p').on('click', "span", function() {
@@ -117,9 +177,9 @@ function dealWords() {
 			$('#edit_words span').each(function() {
 				if ($(this).text().toLowerCase() == strText.toLowerCase()) {
 					if (familar == 1) {
-						$(this).removeClass('strange');
+						$(this).removeClass('strange').addClass('familar');
 					} else {
-						$(this).addClass('strange');
+						$(this).removeClass('familar').addClass('strange');
 					}
 				}
 			});
@@ -146,13 +206,8 @@ function getFamilarWords() {
 	var mapWords = {};
 	$('#word_list span').each(function() {
 		mapWords[$(this).text().toLowerCase()] = $(this).text().toLowerCase();
-			// if ($(this).text().toLowerCase() == arrWord[i].toLowerCase()) {
-				// has = true;
-			// }
 	});
 	
-	console.log(mapWords['']);
-		
 	return mapWords;
 }
 
