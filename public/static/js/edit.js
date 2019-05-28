@@ -9,6 +9,8 @@ $(document).ready(function () {
 	
 	$('#clear').click(function() {
 		$('#content').val('');
+		
+		dealWords();
 	});
 	
 	$('#mark').click(function() {
@@ -75,8 +77,6 @@ String.prototype.isABC2 = function(){
 
 function splitWords(paragraph) {
 	console.log('paragraph.length:' + paragraph.length);
-	console.log(paragraph[0].isABC2());
-	console.log(paragraph[4].isABC2());
 	
 	var wordList = new Array();
 	
@@ -147,7 +147,7 @@ function dealWords() {
 		console.log($(this).html());
 		
 		var thisObj = $(this);
-		var strText = thisObj.text();
+		var strText = thisObj.text().toLowerCase();
 		
 		var sUrl = pURL('/edit/markWord');
 		console.info('doSearch:' + sUrl);

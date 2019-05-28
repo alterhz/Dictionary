@@ -52,7 +52,7 @@ class Edit extends \think\Controller
 		$this->checkSession();
 		
 		$userId = session("session_user")->id;
-		$wordList = Word::where('user_id', $userId)->order('text')->select();
+		$wordList = Word::where('user_id', $userId)->where('familar', 1)->order('text')->select();
 		
 		return json_encode($wordList);
 	}
