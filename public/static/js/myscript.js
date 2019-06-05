@@ -18,8 +18,8 @@ $(document).ready(function () {
 		}
 	});
 	
-	$('.historyList li').click(function() {
-		var t = $(this).children('.searchWord').text();
+	$('.historyList li .searchText').click(function() {
+		var t = $(this).attr('data').trim();
 		doSearch(t);
 	}).mouseover(function() {
 		$(this).children('.delete-word').show();
@@ -28,11 +28,9 @@ $(document).ready(function () {
 	});
 	
 	$('.delete-word').click(function(event) {
-		var t = $(this).parent().children('.searchWord').text();
-		
+		var t = $(this).parent('.row').children('.searchText').attr('data').trim();
+		alert(t);
 		doDelete(t);
-		
-		event.stopPropagation();
 	});
 
 });

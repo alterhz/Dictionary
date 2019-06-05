@@ -62,12 +62,31 @@
 					<div class="panel-heading">History({$Think.session.session_user.history_count})</div>
 					<div class="panel-body">
 						<div class="list-group historyList" >
-							{volist name="historyList" id="vo" mod="2"}
-								{eq name="mod" value="0"}
-									<li class="list-group-item list-group-item-success" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
+							{volist name="historyList" id="vo" key='k'}
+								{eq name="k % 2" value="0"}
+									<li class="list-group-item list-group-item-success" style="cursor:pointer">
 								{else/}
-									<li class="list-group-item list-group-item-info" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
+									<li class="list-group-item list-group-item-info" style="cursor:pointer">
 								{/eq}
+										<div class="row">
+											<div class="col-md-8 col-xs-8 searchText" data="{$vo.text}">
+												<span class="history-word searchWord">{$vo.text}
+												<span class="badge">{$vo.search_count}</span></span>
+											</div>
+											<div class="col-md-4 col-xs-4">
+												<div class="dropdown" style="float: right">
+												  <span class="dropdown-toggle" data-toggle="dropdown">Operate</span>
+												  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+													{volist name="dicList" id="dic"}
+														<li><a href="#">{$dic.name}</a></li>
+													{/volist}
+													<li role="separator" class="divider"></li>
+													<li><a href="#" class="delete-word">Delete</a></li>
+												  </ul>
+												</div>
+											</div>
+										</div>
+									</li>
 							{/volist}
 						</div>
 						
