@@ -36,16 +36,20 @@
 			  <input type="text" class="form-control input-lg" placeholder="word" id="text" name="text">
 			  <div class="input-group-btn">
 				<!-- Button and dropdown menu -->
-				  <button id="search-btn" type="button" class="btn btn-primary btn-lg">{$dic.name}
-					<input id="search_url" type="hidden" value="{$dic.url}"></input>
+				  <button id="selected_dic" type="button" class="btn btn-primary btn-lg">
+					<span class="text">{$dic.name}</span>
 				  </button>
 				  <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<span class="caret"></span>
 					<span class="sr-only">Toggle Dropdown </span>
 				  </button>
-				  <ul class="dropdown-menu">
-					  {volist name="dicList" id="vo" mod="2"}
-						<li><a href="__PUBLIC__/index/changeDic/name/{$vo.name}">{$vo.name}</a></li>
+				  <ul id="dic_list" class="dropdown-menu">
+					  <!-- {volist name="dicList" id="vo" mod="2"} -->
+						<!-- <li><a href="__PUBLIC__/index/changeDic/name/{$vo.name}">{$vo.name}</a></li> -->
+					  <!-- {/volist} -->
+					  
+					  {volist name="dicList" id="vo"}
+						<li><a href="#" url="{$vo.url}">{$vo.name}</a></li>
 					  {/volist}
 				  </ul>
 			  </div>
@@ -61,15 +65,15 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">History({$Think.session.session_user.history_count})</div>
 					<div class="panel-body">
-						<div class="list-group historyList" >
+						<div class="list-group word_list" >
 							{volist name="historyList" id="vo" key='k'}
 								{eq name="k % 2" value="0"}
 									<li class="list-group-item list-group-item-success" style="cursor:pointer">
 								{else/}
 									<li class="list-group-item list-group-item-info" style="cursor:pointer">
 								{/eq}
-										<div class="row">
-											<div class="col-md-8 col-xs-8 searchText" data="{$vo.text}">
+										<div class="row" data="{$vo.text}">
+											<div class="col-md-8 col-xs-8 searchText">
 												<span class="history-word searchWord">{$vo.text}
 												<span class="badge">{$vo.search_count}</span></span>
 											</div>
@@ -78,7 +82,7 @@
 												  <span class="dropdown-toggle" data-toggle="dropdown">Operate</span>
 												  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
 													{volist name="dicList" id="dic"}
-														<li><a href="#">{$dic.name}</a></li>
+														<li><a href="#" class='dic_search'>{$dic.name}</a></li>
 													{/volist}
 													<li role="separator" class="divider"></li>
 													<li><a href="#" class="delete-word">Delete</a></li>
@@ -97,13 +101,6 @@
 							  <a href="__PUBLIC__/index/changeHistoryCount/count/20" type="button" class="btn btn-primary">20</a>
 							  <a href="__PUBLIC__/index/changeHistoryCount/count/50" type="button" class="btn btn-primary">50</a>
 							</div>
-							<!-- <div class="input-group"> -->
-								<!-- <span class="input-group-btn"> -->
-								<!-- <button class="btn btn-primary" type="button">Set</button> -->
-								<!-- </span> -->
-								<!-- <input type="text" class="form-control" width="5" placeholder="count"> -->
-								
-							<!-- </div> -->
 						</div>
 						
 					</div>
@@ -113,13 +110,32 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Top({$Think.session.session_user.top_count})</div>
 					<div class="panel-body">
-						<div class="list-group historyList" >
-							{volist name="topList" id="vo" mod="2"}
-								{eq name="mod" value="0"}
-									<li class="list-group-item list-group-item-success" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
+						<div class="list-group word_list">
+							{volist name="topList" id="vo" key='k'}
+								{eq name="k % 2" value="0"}
+									<li class="list-group-item list-group-item-success" style="cursor:pointer">
 								{else/}
-									<li class="list-group-item list-group-item-info" style="cursor:pointer"><span class="history-word hidden searchWord">{$vo.text}</span>{$vo.text}<span class="badge">{$vo.search_count}</span><button type="button" class="btn btn-link btn-xs pull-right delete-word" style="display:none">remove</button></li>
+									<li class="list-group-item list-group-item-info" style="cursor:pointer">
 								{/eq}
+										<div class="row" data="{$vo.text}">
+											<div class="col-md-8 col-xs-8 searchText">
+												<span class="history-word searchWord">{$vo.text}
+												<span class="badge">{$vo.search_count}</span></span>
+											</div>
+											<div class="col-md-4 col-xs-4">
+												<div class="dropdown" style="float: right">
+												  <span class="dropdown-toggle" data-toggle="dropdown">Operate</span>
+												  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+													{volist name="dicList" id="dic"}
+														<li><a href="#" class='dic_search'>{$dic.name}</a></li>
+													{/volist}
+													<li role="separator" class="divider"></li>
+													<li><a href="#" class="delete-word">Delete</a></li>
+												  </ul>
+												</div>
+											</div>
+										</div>
+									</li>
 							{/volist}
 						</div>
 						<div class="btn-group pull-right" role="group" aria-label="count">

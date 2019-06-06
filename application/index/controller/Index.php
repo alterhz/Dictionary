@@ -201,7 +201,7 @@ class Index extends \think\Controller
 			}
 		}
 		
-		return $this->redirect('index/index');
+		return "OK";
 	}
 	
 	public function changeHistoryCount() {
