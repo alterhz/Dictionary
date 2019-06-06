@@ -10,9 +10,10 @@ $(document).ready(function () {
   	});
 
 	$('#selected_dic').click(function(event) {
-		var t = $('#selected_dic .text').val().trim().toLowerCase();
+		var t = $('#search_text').val().trim().toLowerCase();
+		var selectedDic = $('#selected_dic .text').text();
 		if (t.length > 0) {
-			doSearch(t);
+			doSearch(t, selectedDic);
 		} else {
 			alert('input search text.');
 		}
