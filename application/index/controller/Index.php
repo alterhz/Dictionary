@@ -148,6 +148,52 @@ class Index extends \think\Controller
 		return $this->fetch();
 	}
 	
+	public function history() {
+		$this->checkSession();
+		
+		$userId = session("session_user")->id;
+		$maxHistoryCount = session("session_user")->history_count;
+		$maxTopCount = session("session_user")->top_count;
+		
+		if ($maxHistoryCount < 5) {
+			$maxHistoryCount = 5;
+		}
+		
+		if ($maxTopCount < 5) {
+			$maxTopCount = 5;
+		}
+		
+		$searchDic = session("session_user")->search_dic;
+		if (strlen($searchDic) == 0) {
+			$searchDic = 'LONGMAN';
+		}
+		
+		$wordCount = Search::where('user_id', $userId)->count();
+		$searchCount = Search::where('user_id', $userId)->sum('search_count');
+		
+		$dicList = Dic::all();
+		
+		$dic = Dic::get(['name' => $searchDic]);
+
+		$historyList = Search::where('user_id', $userId)->order('update_time desc')->select();
+
+		$topList = Search::where('user_id', $userId)->order('search_count desc')->limit($maxTopCount)->select();
+		
+		// assign list
+		$this->assign('wordCount', $wordCount);
+		$this->assign('searchCount', $searchCount);
+		
+		$this->assign('dicList', $dicList);
+		$this->assign('dic', $dic);
+		
+		$this->assign('historyList', $historyList);
+		$this->assign('topList', $topList);
+
+		//$this->assign('maxHistoryCount', $maxHistoryCount);
+		
+		return $this->fetch();
+	}
+	
 	public function search() {
 		$this->checkSession();
 		

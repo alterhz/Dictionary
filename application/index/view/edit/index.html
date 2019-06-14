@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Recognize new words</title>
+    <title>段落自动识别生词</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,35 +22,53 @@
   </head>
   <body>
 	<input id="publicUrl" type="hidden" value="__PUBLIC__"></input>
-	
-	<br />
 	<div class="container">
 		
 		<div class="page-header">
 			<div class="pull-right">
-				<p class="">{$Think.session.session_user.name}<a href="__PUBLIC__/index/logout.html" class="btn">Sign Out</a><p>
+				<p class="">{$Think.session.session_user.name}<a href="__PUBLIC__/index/logout.html" class="btn">退出</a><p>
 			</div>
-			<h1 class="">Recognize new words <small>Dictionary</small></h1>
+			<h1 class="">段落 <small>识别生词</small></h1>
 		</div>
+		
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+			<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			  <!-- <a class="navbar-brand" href="__PUBLIC__/index/index.html"></a> -->
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li><a href="__PUBLIC__/index/index.html">查询单词</a></li>
+				<li><a href="__PUBLIC__/index/history.html">历史</a></li>
+				<li class="active"><a href="#">段落</a></li>
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		  </div><!-- /.container-fluid -->
+		</nav>
 		
 		<form>
 		  <div class="form-group">
-			<label for="content" class="col-sm-2 control-label">Content</label>
+			<label for="content" class="col-sm-2 control-label">段落内容</label>
 			<textarea id="content" class="form-control" rows="10">The Milwaukee Bucks are an American professional basketball team based in Milwaukee, Wisconsin. The Bucks compete in the National Basketball Association as a member of the league's Eastern Conference Central Division. The team was founded in 1968 as an expansion team, and play at the Fiserv Forum. Wikipedia</textarea>
 		  </div>
 
 		  <div class="form-group">
-			<button id="confirm" type="button" class="btn btn-primary btn-lg">Process</button>
-			<button id="clear" type="button" class="btn btn-primary btn-lg">Clear</button>
-			<button type="button" id="mark" class="btn btn-primary btn-lg">Quick edit</button>
-			<button type="button" id="btn_familar" class="btn btn-primary btn-lg">Show familar words</button>
+			<button id="confirm" type="button" class="btn btn-primary btn-lg">处理</button>
+			<button id="clear" type="button" class="btn btn-primary btn-lg">清空</button>
+			<button type="button" id="mark" class="btn btn-primary btn-lg">快速编辑</button>
+			<button type="button" id="btn_familar" class="btn btn-primary btn-lg">认识的单词</button>
 		  </div>
 		</form>
 
 		<div class="panel panel-primary">
 		  <div class="panel-heading">
 			<!-- <h3 class="panel-title">Result</h3> -->
-			<span >Dictionary</span>
+			<span >处理后的段落</span>
 			<div class="btn-group">
 			  <button id="selected_dic" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<span class="text">{$dic.name}</span>
@@ -65,10 +83,10 @@
 			
 		  </div>
 			<p class="alert alert-info">
-				<span> Tips:</span>
-				<span style="color:green">familar word is green.</span>
-				<span style="color:red">New word is red.</span>
-				<span style="color:black">Ignore black words.</span>
+				<span> 提示:</span>
+				<span style="color:green">认识的单词绿色.</span>
+				<span style="color:red">生词红色.</span>
+				<span style="color:black">黑色可以忽略.</span>
 			</p>
 		  <div id="contentShow" class="panel-body">
 			<!-- <p> -->
@@ -85,7 +103,7 @@
 		<div class="modal-content">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title">Quick mark words</h4>
+			<h4 class="modal-title">快速编辑</h4>
 		  </div>
 		  <div id="edit_words" class="modal-body">
 			<!-- <p> -->
@@ -93,7 +111,7 @@
 			<!-- </p> -->
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 		  </div>
 		</div>
 	  </div>
@@ -105,7 +123,7 @@
 		<div class="modal-content">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title">Familar words</h4>
+			<h4 class="modal-title">认识的单词</h4>
 		  </div>
 		  <div id="word_list" class="modal-body">
 			{volist name="wordList" id="vo"}
@@ -113,7 +131,7 @@
 			{/volist}
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 		  </div>
 		</div>
 	  </div>

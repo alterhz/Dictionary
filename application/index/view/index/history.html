@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>查询单词</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+	{css href="__PUBLIC__/static/css/mycss.css" /}
+
+	<link href="__PUBLIC__/fav.ico" rel="shortcut icon">
+	
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<input id="publicUrl" type="hidden" value="__PUBLIC__"></input>
+	<div class="container">
+		
+		<div class="page-header">
+			<div class="pull-right">
+				<p class="">{$Think.session.session_user.name}<a href="__PUBLIC__/index/logout.html" class="btn">退出</a><p>
+			</div>
+			<h1 class="">查询单词 <small>所有历史</small></h1>
+		</div>
+		
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+			<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			  <!-- <a class="navbar-brand" href="__PUBLIC__/index/index.html"></a> -->
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li><a href="__PUBLIC__/index/index.html">查询单词</a></li>
+				<li class="active"><a href="#">历史</a></li>
+				<li><a href="__PUBLIC__/edit/index.html">段落</a></li>
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
+		<div class="alert alert-info" role="alert">
+			<p class="lead">查询单词总数量: <strong>{$wordCount}</strong>. 查询总次数: <strong>{$searchCount}</strong></p>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-12 col-md-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">历史({$historyList|count})</div>
+					<div class="panel-body">
+						<div class="list-group word_list" >
+							{volist name="historyList" id="vo" key='k'}
+								{eq name="k % 2" value="0"}
+									<li class="list-group-item list-group-item-success" style="cursor:pointer">
+								{else/}
+									<li class="list-group-item list-group-item-info" style="cursor:pointer">
+								{/eq}
+										<div class="row" data="{$vo.text}">
+											<div class="col-md-8 col-xs-8 searchText">
+												<span class="history-word searchWord">{$vo.text}
+												<span class="badge">{$vo.search_count}</span></span>
+											</div>
+											<div class="col-md-4 col-xs-4">
+												<div class="dropdown" style="float: right">
+												  <span class="dropdown-toggle" data-toggle="dropdown">操作</span>
+												  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+													<li> 点击下面词典查词</li>
+													<li role="separator" class="divider"></li>
+													{volist name="dicList" id="dic"}
+														<li><a href="#" class='dic_search'>{$dic.name}</a></li>
+													{/volist}
+													<li role="separator" class="divider"></li>
+													<li><a href="#" class="delete-word">删除</a></li>
+												  </ul>
+												</div>
+											</div>
+										</div>
+									</li>
+							{/volist}
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+
+	
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+	<!-- my script.js -->
+	{js href="__PUBLIC__/static/js/myscript.js" /}
+
+  </body>
+</html>
