@@ -152,17 +152,7 @@ class Index extends \think\Controller
 		$this->checkSession();
 		
 		$userId = session("session_user")->id;
-		$maxHistoryCount = session("session_user")->history_count;
-		$maxTopCount = session("session_user")->top_count;
-		
-		if ($maxHistoryCount < 5) {
-			$maxHistoryCount = 5;
-		}
-		
-		if ($maxTopCount < 5) {
-			$maxTopCount = 5;
-		}
-		
+
 		$searchDic = session("session_user")->search_dic;
 		if (strlen($searchDic) == 0) {
 			$searchDic = 'LONGMAN';
@@ -177,8 +167,6 @@ class Index extends \think\Controller
 
 		$historyList = Search::where('user_id', $userId)->order('update_time desc')->select();
 
-		$topList = Search::where('user_id', $userId)->order('search_count desc')->limit($maxTopCount)->select();
-		
 		// assign list
 		$this->assign('wordCount', $wordCount);
 		$this->assign('searchCount', $searchCount);
@@ -187,9 +175,6 @@ class Index extends \think\Controller
 		$this->assign('dic', $dic);
 		
 		$this->assign('historyList', $historyList);
-		$this->assign('topList', $topList);
-
-		//$this->assign('maxHistoryCount', $maxHistoryCount);
 		
 		return $this->fetch();
 	}

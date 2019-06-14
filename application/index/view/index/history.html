@@ -50,6 +50,31 @@
 		  </div><!-- /.container-fluid -->
 		  </div><!-- /.container-fluid -->
 		</nav>
+		
+		<div class="" style="margin-bottom:20px">
+			<div class="input-group">
+			  <input type="text" class="form-control input-lg" placeholder="word" id="search_text" name="text">
+			  <div class="input-group-btn">
+				<!-- Button and dropdown menu -->
+				  <button id="selected_dic" type="button" class="btn btn-primary btn-lg">
+					<span class="text">{$dic.name}</span>
+				  </button>
+				  <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown </span>
+				  </button>
+				  <ul id="dic_list" class="dropdown-menu">
+					  <!-- {volist name="dicList" id="vo" mod="2"} -->
+						<!-- <li><a href="__PUBLIC__/index/changeDic/name/{$vo.name}">{$vo.name}</a></li> -->
+					  <!-- {/volist} -->
+					  
+					  {volist name="dicList" id="vo"}
+						<li><a href="#" url="{$vo.url}">{$vo.name}</a></li>
+					  {/volist}
+				  </ul>
+			  </div>
+			</div>
+		</div>
 
 		<div class="alert alert-info" role="alert">
 			<p class="lead">查询单词总数量: <strong>{$wordCount}</strong>. 查询总次数: <strong>{$searchCount}</strong></p>
