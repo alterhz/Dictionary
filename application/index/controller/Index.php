@@ -1,6 +1,8 @@
 <?php
 namespace app\index\controller;
 
+use think\Cookie;
+
 use app\index\model\User;
 use app\index\model\Search;
 use app\index\model\Dic;
@@ -47,9 +49,11 @@ class Index extends \think\Controller
 	 * login
 	 */
 	public function login() {
+		// 初始化cookie
+		cookie(['prefix' => 'think_', 'expire' => 3600 * 24 * 356]);
+		
 		if (input('?name') && input('?password')) 
 		{
-			echo "ddd";
 			$name = input('name');
 			$password = input('password');
 			
@@ -69,7 +73,9 @@ class Index extends \think\Controller
 			if (strcasecmp($user->password, $password) == 0) {
 				// 密码正确
 				session("session_user", $user);
-				echo "ddd";
+				// 保存cookie
+				cookie('name', $name);
+				cookie('password', $password);
 				return $this->redirect("index/index");
 			} else {
 				return $this->error("password is invalid.");
@@ -77,6 +83,23 @@ class Index extends \think\Controller
 		} 
 		else 
 		{
+			// 判断cookie实现自动登录
+			if (Cookie::has('name') && Cookie::has('password')) {
+				$name = cookie('name');
+				$password = cookie('password');
+				
+				if (strlen($name) >= 3 && strlen($password) >= 6) {
+					$user = User::getByName($name);
+					if (null != $user) {
+						if (strcasecmp($user->password, $password) == 0) {
+							// 密码正确
+							session("session_user", $user);
+							return $this->redirect("index/index");
+						}
+					}
+				}
+			}
+			
 			return $this->fetch();
 		}
 	}
@@ -85,7 +108,12 @@ class Index extends \think\Controller
 	 * logout
 	 */
 	public function logout() {
+		// 清理session
 		session("session_user", null);
+		// 清理cookie
+		cookie(['prefix' => 'think_', 'expire' => 3600 * 24 * 356]);
+		cookie('name', null);
+		cookie('password', null);
 		return $this->redirect("index/login");
 	}
 	
